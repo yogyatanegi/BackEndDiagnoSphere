@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import xgboost as xgb
 from flask_cors import CORS
+import joblib
 
 import os
 
@@ -20,6 +21,8 @@ parkinsons_model.load_model("models/parkinsons.json")
 app = Flask(__name__)
 ##Decorator has rule==url and option that is methods to be used
 CORS(app)
+model = joblib.load("models/model.pkl")
+
 @app.route('/')
 def index():
     return render_template('index.html')
